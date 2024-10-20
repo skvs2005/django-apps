@@ -40,7 +40,7 @@ def test_retrieve_book(api_client, create_book):
     response = api_client.get(url)
     assert response.status_code == status.HTTP_200_OK
     assert response.data['title'] == create_book.title
-    
+
 @pytest.mark.django_db
 def test_update_book(api_client, create_book, create_genre):
     url = reverse('book-detail', args=[create_book.id])
@@ -55,7 +55,7 @@ def test_update_book(api_client, create_book, create_genre):
     assert response.status_code == status.HTTP_200_OK
     create_book.refresh_from_db()
     assert create_book.title == "Updated Book"
-    
+
 @pytest.mark.django_db
 def test_delete_book(api_client, create_book):
     url = reverse('book-detail', args=[create_book.id])
